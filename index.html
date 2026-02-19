@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3/12-3/20 土耳其專屬行程與購物導航</title>
+
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#319795">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="土耳其之旅">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #F8FAF5;
+            color: #2D3748;
+        }
+        .chart-wrapper {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            max-height: 300px;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .active-tab {
+            background-color: #319795;
+            color: white;
+            border-color: #319795;
+            transform: scale(1.05);
+        }
+        .inactive-tab {
+            background-color: white;
+            color: #718096;
+            border-color: #E2E8F0;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50 px-4 py-3 shadow-sm flex justify-between items-center">
+        <div>
+            <h1 class="text-xl font-bold text-teal-700 tracking-wide">🇹🇷 土耳其之旅 (3/12-3/20)</h1>
+            <p class="text-xs text-gray-500">您的每日飯店與購物攻略</p>
+        </div>
+        <button onclick="document.getElementById('global-tips').scrollIntoView({behavior: 'smooth'})" class="text-sm bg-orange-100 text-orange-700 px-3 py-1 rounded-full font-medium">
+            💡 必讀攻略
+        </button>
+    </nav>
+
+    <!-- Timeline Navigation (Scrollable) -->
+    <div class="bg-gray-50 py-4 shadow-inner">
+        <div class="container mx-auto px-4">
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">選擇日期 / 行程</h2>
+            <div id="timeline" class="flex overflow-x-auto space-x-3 pb-2 no-scrollbar snap-x">
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto px-4 py-6 max-w-5xl">
+
+        <!-- Intro & Hotel Context -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- Left: Location & Hotel Info -->
+            <div class="md:col-span-1">
+                <div class="bg-white rounded-xl card-shadow p-5 border-l-4 border-teal-500 h-full flex flex-col justify-between">
+                    <div>
+                        <span id="day-badge" class="inline-block bg-teal-100 text-teal-800 text-xs px-2 py-1 rounded font-bold mb-2">DAY 1</span>
+                        <h2 id="location-title" class="text-2xl font-bold text-gray-800 mb-1">Taipei -> Istanbul</h2>
+                        <div class="flex items-center text-gray-600 mt-2">
+                            <span class="text-xl mr-2">🏨</span>
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase">Tonight's Hotel</p>
+                                <p id="hotel-name" class="font-bold text-lg leading-tight">飛機上 / 機場</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="hotel-note" class="mt-4 text-sm text-gray-500 bg-gray-50 p-2 rounded">
+                        準備出發！今日重點是機場免稅店與休息。
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Daily Briefing -->
+            <div class="md:col-span-2 bg-white rounded-xl card-shadow p-6">
+                <h3 class="font-bold text-gray-700 mb-2 flex items-center">
+                    <span class="bg-orange-100 text-orange-600 rounded-full w-6 h-6 flex items-center justify-center text-sm mr-2">!</span>
+                    今日購物重點
+                </h3>
+                <p id="daily-summary" class="text-gray-600 text-sm leading-relaxed mb-4">
+                    今天在飛機上，建議您可以瀏覽機上免稅商品，或是在轉機時購買一些簡單的零食。抵達土耳其後，請多利用休息時間調整時差。
+                </p>
+
+                <!-- Visualization Area -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                        <h4 class="text-xs font-bold text-gray-500 mb-2 text-center">走路去買要多久？(分鐘)</h4>
+                        <div class="chart-wrapper" style="height: 180px;">
+                            <canvas id="distanceChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                        <h4 class="text-xs font-bold text-gray-500 mb-2 text-center">這裡買什麼最划算？</h4>
+                        <div class="chart-wrapper" style="height: 180px;">
+                            <canvas id="typeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Shopping Spots List -->
+        <section>
+            <div class="flex justify-between items-end mb-4">
+                <h3 class="text-xl font-bold text-gray-800">周邊推薦與導航</h3>
+            </div>
+            <div id="spots-container" class="space-y-4">
+            </div>
+        </section>
+
+        <!-- Global Tips Section -->
+        <section id="global-tips" class="mt-12 bg-teal-800 text-teal-50 rounded-2xl p-8 shadow-lg">
+            <h2 class="text-2xl font-bold mb-6 text-center text-white">🇹🇷 土耳其購物生存法則</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-teal-700 bg-opacity-50 p-4 rounded-lg">
+                    <div class="text-3xl mb-2">🛒</div>
+                    <h3 class="font-bold text-white mb-1">認明平價超市</h3>
+                    <p class="text-sm text-teal-100">想買水、餅乾、紅茶包？請在 Google Map 搜尋 <strong>"BIM"</strong>, <strong>"A101"</strong> 或 <strong>"Migros Jet"</strong>。價格是觀光區商店的一半。</p>
+                </div>
+                <div class="bg-teal-700 bg-opacity-50 p-4 rounded-lg">
+                    <div class="text-3xl mb-2">🧶</div>
+                    <h3 class="font-bold text-white mb-1">殺價的藝術</h3>
+                    <p class="text-sm text-teal-100">在番紅花城、大市集或觀光區的小店，<strong>殺價是必須的</strong>。通常從開價的 50%-60% 開始喊，保持微笑但堅定。</p>
+                </div>
+                <div class="bg-teal-700 bg-opacity-50 p-4 rounded-lg">
+                    <div class="text-3xl mb-2">💊</div>
+                    <h3 class="font-bold text-white mb-1">藥妝與玫瑰水</h3>
+                    <p class="text-sm text-teal-100">土耳其藥妝店叫 "Eczane"。著名的玫瑰水 (Gulsha) 在這裡買最便宜，屈臣氏 (Watsons) 或 Gratis 也有賣。</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-100 text-gray-500 py-6 mt-8 text-center text-xs">
+        <p>行程日期：2025/03/12 - 2025/03/20</p>
+        <p>祝您旅途愉快！App Generated for User</p>
+    </footer>
+
+    <script>
+        // --- DATA STORE ---
+        const tripData = [
+            {
+                date: "3/12",
+                day: "Day 1",
+                location: "Taipei -> Istanbul",
+                hotel: "機上 / 轉機",
+                summary: "出發日。建議在桃園機場或轉機點購買必要的免稅品。抵達伊斯坦堡通常是清晨或隔日。",
+                shoppingTip: "機上保濕很重要，多喝水。",
+                spots: [],
+                chartData: { distance: [], types: [0,0,0,0] }
+            },
+            {
+                date: "3/13",
+                day: "Day 2",
+                location: "Istanbul -> Safranbolu",
+                hotel: "Hilton Garden Inn Safranbolu",
+                summary: "番紅花城 (Safranbolu) 是世界遺產山城。這裡是買老派手工藝品、番紅花相關產品最好的地方。飯店距離老城區有一小段距離，建議搭車或參團移動。",
+                shoppingTip: "必買：番紅花香皂、土耳其軟糖 (Lokum，這裡的最老牌)、傳統銅器。",
+                spots: [
+                    { name: "Safranbolu Eski Carsi (老城區市集)", distance: 25, walkText: "步行約 25-30 分 / 車程 5 分", type: "古老市集", goods: "番紅花、軟糖、手工皂、皮革", price: "$", desc: "雖然離飯店有點距離，但這是必逛重點。古色古香，軟糖試吃給很大方。" },
+                    { name: "飯店旁小型商店", distance: 5, walkText: "步行 5 分鐘", type: "便利商店", goods: "水、零食", price: "$", desc: "Hilton 位於新城區邊緣，附近機能較簡單，有小超市可補給。" }
+                ],
+                chartData: { distance: [25, 5], types: [10, 80, 10, 0] }
+            },
+            {
+                date: "3/14",
+                day: "Day 3",
+                location: "Safranbolu -> Ankara -> Cappadocia",
+                hotel: "Signature Garden Avanos Hotel",
+                summary: "長途拉車抵達卡帕多奇亞的阿瓦諾斯 (Avanos) 陶瓷小鎮。飯店位於陶瓷區，這裡以紅土陶瓷聞名。",
+                shoppingTip: "Avanos 是陶藝之都。除了陶瓷，附近也有超市可以買水果和優格。",
+                spots: [
+                    { name: "Avanos 陶瓷工坊", distance: 10, walkText: "步行/車程 10 分鐘內", type: "工藝品", goods: "手工彩繪陶瓷、碗盤", price: "$", desc: "飯店本身就在 Avanos 區域，周邊有很多陶瓷展示中心，價格比伊斯坦堡便宜。" },
+                    { name: "A101 / BIM 超市 (Avanos店)", distance: 12, walkText: "步行約 10-15 分鐘", type: "超市", goods: "便宜的飲用水、無花果乾", price: "$", desc: "鎮上有幾間平價超市，建議買大罐水回飯店。" }
+                ],
+                chartData: { distance: [10, 12], types: [0, 90, 10, 0] }
+            },
+            {
+                date: "3/15",
+                day: "Day 4",
+                location: "Cappadocia (全日)",
+                hotel: "Signature Garden Avanos Hotel",
+                summary: "卡帕多奇亞全日遊。除了熱氣球，這天通常會去地毯工廠或珠寶店（土耳其石）。如果您想買紀念品，Goreme 鎮上選擇比較多。",
+                shoppingTip: "地毯是高價品，請量力而為。土耳其石 (Turquoise) 是不錯的紀念品。超市繼續補貨。",
+                spots: [
+                    { name: "Goreme 市區小店 (需搭車)", distance: 60, walkText: "需搭計程車 (15分鐘)", type: "觀光街區", goods: "熱氣球造型紀念品、明信片、地毯", price: "$", desc: "如果您有自由活動時間去 Goreme，那是買小紀念品最集中的地方。" },
+                    { name: "飯店周邊散步", distance: 5, walkText: "步行 5 分鐘", type: "散步", goods: "風景、紅河景色", price: "Free", desc: "Avanos 紅河邊很漂亮，適合傍晚散步，購物點較少。" }
+                ],
+                chartData: { distance: [15, 5], types: [10, 80, 10, 0] }
+            },
+            {
+                date: "3/16",
+                day: "Day 5",
+                location: "Cappadocia -> Pamukkale",
+                hotel: "Pam Thermal Hotel",
+                summary: "拉車前往棉堡 (Pamukkale)。這裡盛產棉花，是土耳其紡織業中心。飯店通常有溫泉。",
+                shoppingTip: "這是買毛巾、浴袍、棉T最划算的一站。Karahayit 村莊就在飯店附近。",
+                spots: [
+                    { name: "Karahayit Village (紅色溫泉村)", distance: 10, walkText: "步行 10-15 分鐘", type: "在地市集", goods: "棉織品、浴袍、石榴醋", price: "$", desc: "飯店走出去不遠就是市集，這裡的紡織品俗又大碗，記得殺價。" },
+                    { name: "飯店內商店", distance: 1, walkText: "飯店大廳", type: "便利店", goods: "泳衣、泳帽 (泡溫泉用)", price: "$$", desc: "如果你忘了帶泳衣泡溫泉，只能在這裡買貴的了。" }
+                ],
+                chartData: { distance: [10, 1], types: [60, 20, 20, 0] }
+            },
+            {
+                date: "3/17",
+                day: "Day 6",
+                location: "Pamukkale -> Izmir",
+                hotel: "Kaya Izmir Thermal & Convention",
+                summary: "前往愛琴海大城伊茲密爾。Kaya 飯店位於 Narlidere 區，離市中心有點距離，但離 Agora 購物中心不算太遠。",
+                shoppingTip: "這晚適合去逛現代化的 Shopping Mall。Agora Mall 有國際品牌，逛起來很舒服。",
+                spots: [
+                    { name: "Agora Shopping Center", distance: 20, walkText: "步行約 20 分 / 車程 5 分", type: "大型商場", goods: "H&M, LC Waikiki (土耳其國民牌), 玩具, 美食街", price: "$", desc: "非常好逛的商場，如果不從飯店走過去，搭計程車很便宜也很近。" },
+                    { name: "IstinyePark Izmir", distance: 40, walkText: "車程約 10-15 分", type: "頂級商場", goods: "精品、高端時尚", price: "$$", desc: "伊茲密爾最高級的商場，建築很美，適合想看精品的人。" }
+                ],
+                chartData: { distance: [20, 10], types: [80, 0, 10, 10] }
+            },
+            {
+                date: "3/18",
+                day: "Day 7",
+                location: "Izmir -> Istanbul",
+                hotel: "Grand Halic Hotel",
+                summary: "回到伊斯坦堡。Grand Halic 飯店位置絕佳！位於金角灣旁，步行可達佩拉區 (Pera) 和獨立大道。",
+                shoppingTip: "伊斯坦堡精華！晚上直接走去獨立大道 (Istiklal) 感受夜生活和購物。",
+                spots: [
+                    { name: "Istiklal Street (獨立大道)", distance: 10, walkText: "步行 8-12 分鐘", type: "步行街", goods: "美妝 (Flormar, Golden Rose), 衣服 (Mango, Zara), 甜點", price: "$", desc: "土耳其的香榭大道。建議去 Hafiz Mustafa 1864 買精裝軟糖當伴手禮。" },
+                    { name: "Şişhane 地鐵站周邊", distance: 5, walkText: "步行 5 分鐘", type: "設計小店", goods: "設計燈飾、家飾", price: "$", desc: "飯店附近很多賣燈飾和樂器的店，很有氣氛。" }
+                ],
+                chartData: { distance: [10, 5], types: [50, 40, 10, 0] }
+            },
+            {
+                date: "3/19",
+                day: "Day 8",
+                location: "Istanbul (Free Day)",
+                hotel: "Grand Halic Hotel",
+                summary: "伊斯坦堡全日。這是最後補貨的機會。建議前往香料市集 (Spice Bazaar) 或大市集 (Grand Bazaar)。",
+                shoppingTip: "香料市集買果乾、花茶、香料。大市集買皮衣、金飾、彩盤。記得：貨比三家不吃虧。",
+                spots: [
+                    { name: "Egyptian Bazaar (香料市集)", distance: 20, walkText: "步行約 20 分 / 輕軌 10 分", type: "傳統市集", goods: "土耳其軟糖(秤重), 蘋果茶, 番紅花, 烏魚子", price: "$", desc: "比大市集更親民，更好買土產。建議在這裡買齊所有吃的伴手禮。" },
+                    { name: "Grand Bazaar (大市集)", distance: 25, walkText: "步行 25 分 / 輕軌 T1 線", type: "超大型市集", goods: "金飾, 地毯, 皮件, 仿冒品", price: "$-$$", desc: "迷宮一樣的地方，參觀性質大於購物，除非你是殺價高手。" },
+                    { name: "Galata Tower (加拉達塔) 周邊", distance: 10, walkText: "步行 10 分鐘", type: "文創街區", goods: "文創小物, 設計T恤", price: "$", desc: "飯店往塔的方向走，有很多文青小店。" }
+                ],
+                chartData: { distance: [20, 25], types: [20, 60, 20, 0] }
+            },
+            {
+                date: "3/20",
+                day: "Day 9",
+                location: "Istanbul -> Taipei",
+                hotel: "溫暖的家",
+                summary: "打包回府。伊斯坦堡新機場 (IST) 非常大，免稅店非常多，是最後花掉里拉的好地方。",
+                shoppingTip: "機場物價較高 (歐元計價為主)，建議把里拉零錢在市區花完。機場適合買酒或國際精品。",
+                spots: [
+                    { name: "IST Airport Duty Free", distance: 0, walkText: "機場內", type: "免稅店", goods: "菸酒, Godiva, 國際精品", price: "$$", desc: "世界最大的機場之一，預留 2-3 小時逛街是合理的。" }
+                ],
+                chartData: { distance: [0], types: [30, 30, 10, 30] }
+            }
+        ];
+
+        // --- APP STATE & RENDER LOGIC ---
+        let currentIndex = 0;
+        let distChart = null;
+        let typeChart = null;
+
+        function initApp() {
+            renderTimeline();
+            loadDate(0);
+        }
+
+        function renderTimeline() {
+            const container = document.getElementById('timeline');
+            container.innerHTML = tripData.map((item, idx) => `
+                <button onclick="loadDate(${idx})"
+                    class="flex-shrink-0 min-w-[80px] px-3 py-2 rounded-lg border text-center transition-all duration-200 snap-center
+                    ${idx === 0 ? 'active-tab' : 'inactive-tab'}"
+                    id="tab-${idx}">
+                    <div class="text-xs font-bold opacity-70">${item.date}</div>
+                    <div class="text-sm font-bold">${item.day}</div>
+                    <div class="text-[10px] truncate w-full">${item.location.split('->')[0]}</div>
+                </button>
+            `).join('');
+        }
+
+        function loadDate(idx) {
+            currentIndex = idx;
+            const data = tripData[idx];
+
+            document.querySelectorAll('#timeline button').forEach((btn, i) => {
+                if (i === idx) {
+                    btn.className = "flex-shrink-0 min-w-[80px] px-3 py-2 rounded-lg border text-center transition-all duration-200 snap-center active-tab shadow-md";
+                } else {
+                    btn.className = "flex-shrink-0 min-w-[80px] px-3 py-2 rounded-lg border text-center transition-all duration-200 snap-center inactive-tab hover:bg-gray-50";
+                }
+            });
+
+            document.getElementById('day-badge').innerText = `${data.day} • ${data.date}`;
+            document.getElementById('location-title').innerText = data.location;
+            document.getElementById('hotel-name').innerText = data.hotel;
+            document.getElementById('hotel-note').innerText = data.shoppingTip;
+            document.getElementById('daily-summary').innerText = data.summary;
+
+            const spotsContainer = document.getElementById('spots-container');
+            if (data.spots.length === 0) {
+                spotsContainer.innerHTML = `<div class="p-6 bg-gray-50 rounded-lg text-center text-gray-500">本日行程以交通/機場為主，請把握機場免稅店機會！</div>`;
+            } else {
+                spotsContainer.innerHTML = data.spots.map(spot => `
+                    <div class="bg-white rounded-lg border border-gray-200 p-4 flex flex-col sm:flex-row justify-between items-start hover:border-teal-300 transition-colors">
+                        <div class="mb-2 sm:mb-0">
+                            <h4 class="font-bold text-gray-800 text-lg flex items-center">
+                                ${spot.name}
+                                <span class="ml-2 text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded border">${spot.type}</span>
+                            </h4>
+                            <p class="text-sm text-gray-600 mt-1"><span class="font-semibold text-teal-600">推薦購買：</span>${spot.goods}</p>
+                            <p class="text-xs text-gray-400 mt-2 italic">"${spot.desc}"</p>
+                        </div>
+                        <div class="flex flex-col items-end min-w-[100px]">
+                            <span class="text-xs font-bold bg-teal-50 text-teal-700 px-2 py-1 rounded mb-1">${spot.walkText}</span>
+                            <span class="text-xs font-bold text-gray-400">價格: ${spot.price}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            updateCharts(data);
+            document.getElementById(`tab-${idx}`).scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'center'});
+        }
+
+        function updateCharts(data) {
+            const ctxDist = document.getElementById('distanceChart').getContext('2d');
+            if (distChart) distChart.destroy();
+
+            const distLabels = data.spots.length ? data.spots.map(s => s.name.substring(0, 8) + '...') : ['N/A'];
+            const distValues = data.spots.length ? data.spots.map(s => s.distance) : [0];
+
+            distChart = new Chart(ctxDist, {
+                type: 'bar',
+                data: {
+                    labels: distLabels,
+                    datasets: [{
+                        label: '步行時間 (分)',
+                        data: distValues,
+                        backgroundColor: '#81E6D9',
+                        borderColor: '#38B2AC',
+                        borderWidth: 1,
+                        borderRadius: 4,
+                        barThickness: 20
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: { beginAtZero: true, grid: { display: false } },
+                        y: { grid: { display: false } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            const ctxType = document.getElementById('typeChart').getContext('2d');
+            if (typeChart) typeChart.destroy();
+
+            typeChart = new Chart(ctxType, {
+                type: 'doughnut',
+                data: {
+                    labels: ['服飾/時尚', '伴手禮/工藝', '超市/生活', '精品/其他'],
+                    datasets: [{
+                        data: data.chartData.types,
+                        backgroundColor: ['#F6AD55', '#68D391', '#63B3ED', '#A0AEC0'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'right', labels: { boxWidth: 10, font: { size: 10 } } }
+                    }
+                }
+            });
+        }
+
+        // Initialize app
+        window.addEventListener('DOMContentLoaded', initApp);
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('SW registered:', reg.scope))
+                .catch(err => console.log('SW registration failed:', err));
+        }
+    </script>
+</body>
+</html>

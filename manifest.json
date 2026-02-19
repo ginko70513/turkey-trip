@@ -1,0 +1,22 @@
+{
+  "name": "土耳其之旅 3/12-3/20",
+  "short_name": "土耳其之旅",
+  "description": "每日飯店與購物攻略",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "theme_color": "#319795",
+  "background_color": "#F8FAF5",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
