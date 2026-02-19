@@ -244,9 +244,10 @@
                 shoppingTip: "這晚適合去逛現代化的 Shopping Mall。Agora Mall 有國際品牌，逛起來很舒服。",
                 spots: [
                     { name: "Agora Shopping Center", distance: 20, walkText: "步行約 20 分 / 車程 5 分", type: "大型商場", goods: "H&M, LC Waikiki (土耳其國民牌), 玩具, 美食街", price: "$", desc: "非常好逛的商場，如果不從飯店走過去，搭計程車很便宜也很近。", mapQuery: "Agora AVM, Balçova, İzmir" },
-                    { name: "IstinyePark Izmir", distance: 40, walkText: "車程約 10-15 分", type: "頂級商場", goods: "精品、高端時尚", price: "$$", desc: "伊茲密爾最高級的商場，建築很美，適合想看精品的人。", mapQuery: "İstinyePark İzmir, Balçova, İzmir" }
+                    { name: "IstinyePark Izmir", distance: 40, walkText: "車程約 10-15 分", type: "頂級商場", goods: "精品、高端時尚", price: "$$", desc: "伊茲密爾最高級的商場，建築很美，適合想看精品的人。", mapQuery: "İstinyePark İzmir, Balçova, İzmir" },
+                    { name: "Gratis (Agora Mall 內)", distance: 20, walkText: "步行約 20 分 / 車程 5 分", type: "藥妝", goods: "玫瑰水、面膜、護手霜、土耳其平價美妝", price: "$", desc: "Agora Mall 裡面就有 Gratis，逛商場時順便買。", mapQuery: "Gratis, Agora AVM, Balçova, İzmir" }
                 ],
-                chartData: { distance: [20, 10], types: [80, 0, 10, 10] }
+                chartData: { distance: [20, 10, 20], types: [70, 0, 20, 10] }
             },
             {
                 date: "3/18",
@@ -258,9 +259,11 @@
                 shoppingTip: "伊斯坦堡精華！晚上直接走去獨立大道 (Istiklal) 感受夜生活和購物。",
                 spots: [
                     { name: "Istiklal Street (獨立大道)", distance: 10, walkText: "步行 8-12 分鐘", type: "步行街", goods: "美妝 (Flormar, Golden Rose), 衣服 (Mango, Zara), 甜點", price: "$", desc: "土耳其的香榭大道。建議去 Hafiz Mustafa 1864 買精裝軟糖當伴手禮。", mapQuery: "İstiklal Caddesi, Beyoğlu, İstanbul" },
-                    { name: "Şişhane 地鐵站周邊", distance: 5, walkText: "步行 5 分鐘", type: "設計小店", goods: "設計燈飾、家飾", price: "$", desc: "飯店附近很多賣燈飾和樂器的店，很有氣氛。", mapQuery: "Şişhane Metro, Beyoğlu, İstanbul" }
+                    { name: "Şişhane 地鐵站周邊", distance: 5, walkText: "步行 5 分鐘", type: "設計小店", goods: "設計燈飾、家飾", price: "$", desc: "飯店附近很多賣燈飾和樂器的店，很有氣氛。", mapQuery: "Şişhane Metro, Beyoğlu, İstanbul" },
+                    { name: "Watsons / Gratis (İstiklal 上)", distance: 10, walkText: "步行 8-12 分鐘", type: "藥妝", goods: "玫瑰水 (Gulsha)、面膜、護手霜、Flormar 彩妝", price: "$", desc: "獨立大道上 Watsons 和 Gratis 都有，走一趟全部買齊最方便。", mapQuery: "Gratis, İstiklal Caddesi, Beyoğlu, İstanbul" },
+                    { name: "BIM / ŞOK 超市 (飯店附近)", distance: 5, walkText: "步行 3-5 分鐘", type: "平價超市", goods: "飲用水、果汁、餅乾、紅茶包、土耳其優格", price: "$", desc: "Beyoğlu 巷弄裡到處都有 BIM 和 ŞOK，買水和零食最便宜。", mapQuery: "BIM Market, Beyoğlu, İstanbul" }
                 ],
-                chartData: { distance: [10, 5], types: [50, 40, 10, 0] }
+                chartData: { distance: [10, 5, 10, 5], types: [40, 30, 20, 10] }
             },
             {
                 date: "3/19",
@@ -273,9 +276,10 @@
                 spots: [
                     { name: "Egyptian Bazaar (香料市集)", distance: 20, walkText: "步行約 20 分 / 輕軌 10 分", type: "傳統市集", goods: "土耳其軟糖(秤重), 蘋果茶, 番紅花, 烏魚子", price: "$", desc: "比大市集更親民，更好買土產。建議在這裡買齊所有吃的伴手禮。", mapQuery: "Mısır Çarşısı, Eminönü, İstanbul" },
                     { name: "Grand Bazaar (大市集)", distance: 25, walkText: "步行 25 分 / 輕軌 T1 線", type: "超大型市集", goods: "金飾, 地毯, 皮件, 仿冒品", price: "$-$$", desc: "迷宮一樣的地方，參觀性質大於購物，除非你是殺價高手。", mapQuery: "Kapalıçarşı, Beyazıt, İstanbul" },
-                    { name: "Galata Tower (加拉達塔) 周邊", distance: 10, walkText: "步行 10 分鐘", type: "文創街區", goods: "文創小物, 設計T恤", price: "$", desc: "飯店往塔的方向走，有很多文青小店。", mapQuery: "Galata Kulesi, Beyoğlu, İstanbul" }
+                    { name: "Galata Tower (加拉達塔) 周邊", distance: 10, walkText: "步行 10 分鐘", type: "文創街區", goods: "文創小物, 設計T恤", price: "$", desc: "飯店往塔的方向走，有很多文青小店。", mapQuery: "Galata Kulesi, Beyoğlu, İstanbul" },
+                    { name: "A101 超市 (Eminönü 附近)", distance: 20, walkText: "步行 20 分 / 輕軌 10 分", type: "平價超市", goods: "大量採購果乾、茶包、巧克力當伴手禮", price: "$", desc: "逛完香料市集順路去，最後一天大採購補貨的好地方。", mapQuery: "A101 Market, Eminönü, İstanbul" }
                 ],
-                chartData: { distance: [20, 25], types: [20, 60, 20, 0] }
+                chartData: { distance: [20, 25, 10, 20], types: [15, 55, 25, 5] }
             },
             {
                 date: "3/20",
