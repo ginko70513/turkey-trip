@@ -1,4 +1,4 @@
-const CACHE_NAME = 'turkey-trip-v10';
+const CACHE_NAME = 'turkey-trip-v11';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
