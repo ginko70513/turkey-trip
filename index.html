@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3/12-3/20 土耳其專屬行程與購物導航</title>
+    <title>3/11-3/22 土耳其專屬行程與購物導航</title>
 
     <!-- PWA Meta Tags -->
     <link rel="manifest" href="manifest.json">
@@ -73,7 +73,7 @@
     <nav class="bg-white border-b border-gray-200 sticky top-0 z-50 px-4 py-2 shadow-sm">
         <div class="flex justify-between items-center">
             <div>
-                <h1 class="text-lg font-bold text-teal-700 tracking-wide">🇹🇷 土耳其之旅 (3/12-3/20)</h1>
+                <h1 class="text-lg font-bold text-teal-700 tracking-wide">🇹🇷 土耳其之旅 (3/11-3/22)</h1>
                 <p class="text-xs text-gray-500">您的每日飯店與購物攻略</p>
             </div>
             <button onclick="document.getElementById('global-tips').scrollIntoView({behavior: 'smooth'})" class="text-sm bg-orange-100 text-orange-700 px-3 py-1 rounded-full font-medium">
@@ -214,174 +214,221 @@
     </main>
 
     <footer class="bg-gray-100 text-gray-500 py-6 mt-8 text-center text-xs">
-        <p>行程日期：2025/03/12 - 2025/03/20</p>
+        <p>行程日期：2025/03/11 - 2025/03/22</p>
         <p>祝您旅途愉快！App Generated for User</p>
     </footer>
 
     <script>
         // --- DATA STORE ---
         const tripData = [
+            // Day 1: 3/11 飛機上
             {
-                date: "3/12",
+                date: "3/11",
                 day: "Day 1",
-                location: "Taipei -> Istanbul",
-                hotel: "機上 / 轉機",
+                location: "Taipei -> Turkey",
+                hotel: "飛機上",
                 hotelAddress: "",
                 hotelCoords: null,
-                summary: "出發日。建議在桃園機場或轉機點購買必要的免稅品。抵達伊斯坦堡通常是清晨或隔日。",
-                shoppingTip: "機上保濕很重要，多喝水。",
+                summary: "出發日！從桃園機場飛往土耳其。建議在機場免稅店採購必要品，機上好好休息調整時差。",
+                shoppingTip: "機上保濕很重要，多喝水。可在桃園免稅店先買些必需品。",
                 spots: [],
                 chartData: { distance: [], types: [0,0,0,0] }
             },
+            // Day 2: 3/12 Ankara - HILTONSA
+            {
+                date: "3/12",
+                day: "Day 2",
+                location: "Ankara",
+                hotel: "HILTONSA HOTEL",
+                hotelAddress: "Tahran Caddesi No 12, Kavaklidere, Ankara, 06700",
+                hotelCoords: [39.9020, 32.8636],
+                summary: "抵達土耳其首都安卡拉！飯店位於 Kavaklidere 高級住宅區，旁邊就是著名的 Tunalı Hilmi 大道，餐廳、咖啡廳林立。",
+                shoppingTip: "Kavaklidere 區生活機能好，Tunalı Hilmi 大道上有很多商店和藥妝。",
+                spots: [
+                    { name: "Tunalı Hilmi Caddesi (大道)", distance: 10, walkText: "步行約 8-12 分鐘", type: "購物大道", goods: "服飾、咖啡、餐廳、書店", desc: "安卡拉最熱鬧的大道之一，類似台北東區。各種品牌和餐廳都有。", mapQuery: "Tunalı Hilmi Caddesi, Kavaklidere, Ankara", coords: [39.9050, 32.8610] },
+                    { name: "Migros (Tahran Cad.)", distance: 5, walkText: "步行約 3-5 分鐘", type: "Migros", brand: "migros", goods: "水、果汁、零食、生鮮", desc: "就在 Tahran 大道上，跟飯店同一條街，最近的超市。", mapQuery: "Migros, Gazi Osmanpaşa Mah. Tahran Caddesi No:40, Çankaya, Ankara", coords: [39.9035, 32.8620] },
+                    { name: "Watsons (Tunalı Hilmi Cad.)", distance: 12, walkText: "步行約 10-15 分鐘", type: "Watsons", brand: "watsons", goods: "國際品牌保養、彩妝、玫瑰水", desc: "Tunalı Hilmi 大道上，品項齊全。", mapQuery: "Watsons, Kavaklidere Mah. Tunalı Hilmi Cad. No:119, Çankaya, Ankara", coords: [39.9060, 32.8600] },
+                    { name: "Evrensel Eczanesi", distance: 6, walkText: "步行約 5-8 分鐘", type: "Eczane", brand: "eczane", goods: "藥品、防曬、基礎保養品", desc: "Kavaklidere 區內，走路就到。", mapQuery: "Evrensel Eczanesi, Kavaklidere, Çankaya, Ankara", coords: [39.9025, 32.8640] }
+                ],
+                chartData: { distance: [10, 5, 12, 6], types: [30, 20, 40, 10] }
+            },
+            // Day 3: 3/13 Ürgüp - YUNAK EVLERI
             {
                 date: "3/13",
-                day: "Day 2",
-                location: "Istanbul -> Safranbolu",
-                hotel: "Hilton Garden Inn Safranbolu",
-                hotelAddress: "Hilton Garden Inn Safranbolu, Safranbolu, Karabük, Turkey",
-                hotelCoords: [41.2569, 32.6931],
-                summary: "番紅花城 (Safranbolu) 是世界遺產山城。這裡是買老派手工藝品、番紅花相關產品最好的地方。飯店距離老城區有一小段距離，建議搭車或參團移動。",
-                shoppingTip: "必買：番紅花香皂、土耳其軟糖 (Lokum，這裡的最老牌)、傳統銅器。",
+                day: "Day 3",
+                location: "Ankara -> Cappadocia (Ürgüp)",
+                hotel: "YUNAK EVLERI CAVE HOTEL",
+                hotelAddress: "Temenni, Balcı Sk., 50400 Ürgüp/Nevşehir",
+                hotelCoords: [38.6339, 34.9072],
+                summary: "前往卡帕多奇亞！入住 Ürgüp 的洞穴飯店 Yunak Evleri，體驗獨特的洞穴住宿。Ürgüp 是個小鎮，鎮中心步行可達。",
+                shoppingTip: "Ürgüp 鎮上可以買陶瓷、地毯和手工藝品。超市選擇不多但基本補給沒問題。",
                 spots: [
-                    { name: "Safranbolu Eski Carsi (老城區市集)", distance: 25, walkText: "步行約 25-30 分 / 車程 5 分", type: "古老市集", goods: "番紅花、軟糖、手工皂、皮革", price: "$", desc: "雖然離飯店有點距離，但這是必逛重點。古色古香，軟糖試吃給很大方。", mapQuery: "Safranbolu Eski Çarşı, Safranbolu", coords: [41.2533, 32.6878] },
-                    { name: "Migros (Mutlu Sok.)", distance: 4, walkText: "步行約 3-5 分鐘", type: "Migros", brand: "migros", goods: "水、果汁、零食、生鮮", price: "$", desc: "就在 Yeni Mahalle 的 Mutlu 街上，離飯店最近的超市。", mapQuery: "MM Migros, Yeni Mah. Mutlu Sokak No:2, Safranbolu", coords: [41.2575, 32.6940] },
-                    { name: "ŞOK (Bağlar Cad.)", distance: 6, walkText: "步行約 5-8 分鐘", type: "ŞOK", brand: "sok", goods: "飲用水、餅乾、紅茶包", price: "$", desc: "Bağlar 大道上的 ŞOK，價格跟 BIM 差不多便宜。", mapQuery: "ŞOK Market, Yeni Mah. Alparslan Türkeş Bağlar Caddesi, Safranbolu", coords: [41.2560, 32.6960] },
-                    { name: "A101 (Yenimahalle)", distance: 6, walkText: "步行約 5-7 分鐘", type: "A101", brand: "a101", goods: "零食、日用品", price: "$", desc: "同在 Yeni Mahalle 區，走路就到。", mapQuery: "A101, Özgür Sk. Yenimahalle Mah., Safranbolu", coords: [41.2572, 32.6950] },
-                    { name: "Işıkgül Eczanesi", distance: 6, walkText: "步行約 5-7 分鐘", type: "Eczane", brand: "eczane", goods: "藥品、防曬、基礎保養品", price: "$", desc: "Sadri Artunç 大道上，番紅花城沒有 Gratis/Watsons，藥妝需求來這裡。", mapQuery: "Işıkgül Eczanesi, Yeni Mah. Sadri Artunç Cad. No:139/A, Safranbolu", coords: [41.2565, 32.6945] }
+                    { name: "Ürgüp 鎮中心", distance: 5, walkText: "步行約 3-5 分鐘", type: "小鎮街區", goods: "陶瓷、紀念品、軟糖", desc: "飯店就在 Temenni 區，走下去就是鎮中心，有很多小店。", mapQuery: "Ürgüp Merkez, Nevşehir", coords: [38.6310, 34.9100] },
+                    { name: "Migros (Sivritaş Mah.)", distance: 12, walkText: "步行約 10-12 分鐘", type: "Migros", brand: "migros", goods: "水、果汁、零食、生鮮", desc: "在 Sivritaş 區 Benzinci Dayı 街上，品項比較齊全。", mapQuery: "Migros, Sivritaş Mah. Benzinci Dayı Sok. No:27, Ürgüp", coords: [38.6262, 34.9148] },
+                    { name: "A101 (Fabrika Cad.)", distance: 7, walkText: "步行約 5-8 分鐘", type: "A101", brand: "a101", goods: "飲用水、零食、日用品", desc: "Fabrika 大道上，比 Migros 近一些。", mapQuery: "A101, Fabrika Caddesi, Ürgüp, Nevşehir", coords: [38.6320, 34.9110] },
+                    { name: "Güney Eczanesi", distance: 3, walkText: "步行約 2-3 分鐘", type: "Eczane", brand: "eczane", goods: "藥品、防曬、基礎保養品", desc: "Temenni 區 Şehit Cem 大道上，離飯店最近的藥局。Ürgüp 沒有 Gratis/Watsons。", mapQuery: "Güney Eczanesi, Temenni Mah. Şehit Cem Bulvarı Cad. No:7, Ürgüp", coords: [38.6335, 34.9085] }
                 ],
-                chartData: { distance: [25, 4, 6, 6, 6], types: [10, 80, 10, 0] }
+                chartData: { distance: [5, 12, 7, 3], types: [10, 70, 20, 0] }
             },
+            // Day 4: 3/14 Ürgüp - YUNAK EVLERI (第二晚)
             {
                 date: "3/14",
-                day: "Day 3",
-                location: "Safranbolu -> Ankara -> Cappadocia",
-                hotel: "Signature Garden Avanos Hotel",
-                hotelAddress: "Signature Garden Avanos Hotel, Avanos, Nevşehir, Turkey",
-                hotelCoords: [38.7190, 34.8490],
-                summary: "長途拉車抵達卡帕多奇亞的阿瓦諾斯 (Avanos) 陶瓷小鎮。飯店位於陶瓷區，這裡以紅土陶瓷聞名。",
-                shoppingTip: "Avanos 是陶藝之都。除了陶瓷，附近也有超市可以買水果和優格。",
-                spots: [
-                    { name: "Avanos 陶瓷工坊", distance: 10, walkText: "步行/車程 10 分鐘內", type: "工藝品", goods: "手工彩繪陶瓷、碗盤", price: "$", desc: "飯店本身就在 Avanos 區域，周邊有很多陶瓷展示中心，價格比伊斯坦堡便宜。", mapQuery: "Avanos Pottery, Avanos, Nevşehir", coords: [38.7150, 34.8460] },
-                    { name: "ŞOK (Kapadokya Cad.)", distance: 4, walkText: "步行約 3-6 分鐘", type: "ŞOK", brand: "sok", goods: "飲用水、零食、優格", price: "$", desc: "Cumhuriyet 區 Kapadokya 大道上，離飯店最近。", mapQuery: "ŞOK Market, Cumhuriyet Mahallesi, Kapadokya Caddesi No:56/9, Avanos", coords: [38.7185, 34.8505] },
-                    { name: "A101 (Kapadokya Cad.)", distance: 4, walkText: "步行約 3-5 分鐘", type: "A101", brand: "a101", goods: "飲用水、無花果乾、優格", price: "$", desc: "同在 Cumhuriyet 區 Kapadokya 大道上，跟 ŞOK 很近。", mapQuery: "A101, Cumhuriyet Mahallesi, Kapadokya Caddesi No:9, Avanos", coords: [38.7180, 34.8500] },
-                    { name: "Migros Jet (Mithat Dülge Cad.)", distance: 10, walkText: "步行約 8-12 分鐘", type: "Migros", brand: "migros", goods: "生鮮、水果、飲料", price: "$", desc: "在隔壁 Bahçelievler 區，品項比 A101/ŞOK 多一些。", mapQuery: "Migros Jet, Bahçelievler Mah. Mithat Dülge Cad. No:1/2, Avanos", coords: [38.7210, 34.8520] },
-                    { name: "Can Eczanesi", distance: 4, walkText: "步行約 3-5 分鐘", type: "Eczane", brand: "eczane", goods: "藥品、防曬、基礎保養", price: "$", desc: "Zelve 大道上，Avanos 沒有 Gratis/Watsons，藥妝來這裡。", mapQuery: "Can Eczanesi, Cumhuriyet Mah. Zelve Caddesi No:20/8, Avanos", coords: [38.7175, 34.8485] }
-                ],
-                chartData: { distance: [10, 4, 4, 10, 4], types: [0, 80, 20, 0] }
-            },
-            {
-                date: "3/15",
                 day: "Day 4",
                 location: "Cappadocia (全日)",
-                hotel: "Signature Garden Avanos Hotel",
-                hotelAddress: "Signature Garden Avanos Hotel, Avanos, Nevşehir, Turkey",
-                hotelCoords: [38.7190, 34.8490],
-                summary: "卡帕多奇亞全日遊。除了熱氣球，這天通常會去地毯工廠或珠寶店（土耳其石）。如果您想買紀念品，Goreme 鎮上選擇比較多。",
-                shoppingTip: "地毯是高價品，請量力而為。土耳其石 (Turquoise) 是不錯的紀念品。超市繼續補貨。",
+                hotel: "YUNAK EVLERI CAVE HOTEL",
+                hotelAddress: "Temenni, Balcı Sk., 50400 Ürgüp/Nevşehir",
+                hotelCoords: [38.6339, 34.9072],
+                summary: "卡帕多奇亞全日遊！熱氣球、地下城、奇岩怪石。如果有自由時間可以去 Göreme 鎮逛逛紀念品店。",
+                shoppingTip: "地毯是高價品，請量力而為。土耳其石 (Turquoise) 是不錯的紀念品。",
                 spots: [
-                    { name: "Goreme 市區小店 (需搭車)", distance: 60, walkText: "需搭計程車 (15分鐘)", type: "觀光街區", goods: "熱氣球造型紀念品、明信片、地毯", price: "$", desc: "如果您有自由活動時間去 Goreme，那是買小紀念品最集中的地方。", mapQuery: "Göreme, Nevşehir", coords: [38.6431, 34.8312] },
-                    { name: "飯店周邊散步", distance: 5, walkText: "步行 5 分鐘", type: "散步", goods: "風景、紅河景色", price: "Free", desc: "Avanos 紅河邊很漂亮，適合傍晚散步，購物點較少。", mapQuery: "Kızılırmak River, Avanos", coords: [38.7165, 34.8470] },
-                    { name: "ŞOK (Kapadokya Cad.)", distance: 4, walkText: "步行約 3-6 分鐘", type: "ŞOK", brand: "sok", goods: "補貨飲用水、零食", price: "$", desc: "同 Day 3，飯店附近最近的超市。", mapQuery: "ŞOK Market, Cumhuriyet Mahallesi, Kapadokya Caddesi No:56/9, Avanos", coords: [38.7185, 34.8505] }
+                    { name: "Göreme 市區小店 (需搭車)", distance: 60, walkText: "需搭車（約 15 分鐘車程）", type: "觀光街區", goods: "熱氣球造型紀念品、明信片、地毯", desc: "如果有自由活動時間去 Göreme，那裡是買小紀念品最集中的地方。", mapQuery: "Göreme, Nevşehir", coords: [38.6431, 34.8312] },
+                    { name: "Ürgüp 鎮中心散步", distance: 5, walkText: "步行約 3-5 分鐘", type: "散步", goods: "風景、咖啡、小店", desc: "傍晚回飯店後可以在小鎮散步，很有氣氛。", mapQuery: "Ürgüp Merkez, Nevşehir", coords: [38.6310, 34.9100] },
+                    { name: "A101 (Fabrika Cad.)", distance: 7, walkText: "步行約 5-8 分鐘", type: "A101", brand: "a101", goods: "補貨飲用水、零食", desc: "同 Day 3，鎮上最近的超市。", mapQuery: "A101, Fabrika Caddesi, Ürgüp, Nevşehir", coords: [38.6320, 34.9110] }
                 ],
-                chartData: { distance: [15, 5, 4], types: [10, 80, 10, 0] }
+                chartData: { distance: [15, 5, 7], types: [10, 80, 10, 0] }
             },
+            // Day 5: 3/15 Konya - GRAND HOTEL KONYA
+            {
+                date: "3/15",
+                day: "Day 5",
+                location: "Cappadocia -> Konya",
+                hotel: "GRAND HOTEL KONYA",
+                hotelAddress: "Akademi, Yeni İstanbul Cd. No:231/1, 42130 Selçuklu/Konya",
+                hotelCoords: [38.0058, 32.5168],
+                summary: "前往孔亞 (Konya)，梅夫拉那 (Mevlana) 旋轉舞的故鄉。Grand Hotel Konya 是五星飯店，位於 Selçuklu 區，飯店內有附設商場。",
+                shoppingTip: "孔亞是較保守的城市，但 Bosna Hersek 區有不少超市。飯店附設商場也可以逛。",
+                spots: [
+                    { name: "飯店附設商場", distance: 1, walkText: "飯店內", type: "商場", goods: "咖啡、餐廳、基本購物", desc: "Grand Hotel Konya 直接連接商場，不用出門就能逛。", mapQuery: "Grand Hotel Konya, Yeni İstanbul Cad. No:231, Selçuklu, Konya", coords: [38.0058, 32.5168] },
+                    { name: "Migros Jet (Yeni İstanbul Cad.)", distance: 5, walkText: "步行約 3-6 分鐘", type: "Migros", brand: "migros", goods: "水、果汁、零食、生鮮", desc: "Bosna Hersek 區 Yeni İstanbul 大道上，跟飯店同條路。", mapQuery: "Migros Jet, Bosna Hersek Mah. Yeni İstanbul Cad. No:250, Selçuklu, Konya", coords: [38.0045, 32.5180] },
+                    { name: "ŞOK (Bosna Hersek Mah.)", distance: 8, walkText: "步行約 6-10 分鐘", type: "ŞOK", brand: "sok", goods: "飲用水、餅乾、果汁", desc: "Bosna Hersek 區 Soner 街上，價格便宜。", mapQuery: "ŞOK Market, Bosna Hersek Mah. Soner Sok. No:1/1, Selçuklu, Konya", coords: [38.0040, 32.5190] },
+                    { name: "Eczane", distance: 6, walkText: "步行約 5-8 分鐘", type: "Eczane", brand: "eczane", goods: "藥品、防曬、基礎保養品", desc: "Bosna Hersek 區附近有多家藥局。孔亞沒有 Gratis/Watsons，藥妝需求來這裡。", mapQuery: "Eczane, Bosna Hersek Mah. Yeni İstanbul Cad., Selçuklu, Konya", coords: [38.0050, 32.5175] }
+                ],
+                chartData: { distance: [1, 5, 8, 6], types: [10, 30, 50, 10] }
+            },
+            // Day 6: 3/16 Antalya - HOLIDAY INN LARA
             {
                 date: "3/16",
-                day: "Day 5",
-                location: "Cappadocia -> Pamukkale",
-                hotel: "Pam Thermal Hotel",
-                hotelAddress: "Pam Thermal Hotel, Karahayıt, Pamukkale, Denizli, Turkey",
+                day: "Day 6",
+                location: "Konya -> Antalya",
+                hotel: "HOLIDAY INN LARA ANTALYA",
+                hotelAddress: "Güzeloba Mah. 2290 Sok. No:5, Lara, Antalya, 07230",
+                hotelCoords: [36.8532, 30.8031],
+                summary: "前往地中海度假勝地安塔利亞 (Antalya)！Holiday Inn 位於 Lara 海灘區，周邊是度假飯店區，購物需走一小段路。",
+                shoppingTip: "Lara 區有 TerraCity 和 Antalium 大型商場，離飯店不遠。A101 是最近的超市。",
+                spots: [
+                    { name: "TerraCity AVM", distance: 20, walkText: "步行約 15-20 分 / 車程 5 分", type: "大型商場", goods: "H&M, Zara, LC Waikiki, 美食街, Watsons", desc: "Lara 區最大的購物中心，各種品牌都有。裡面也有 Watsons。", mapQuery: "TerraCity AVM, Fener Mah. Tekelioğlu Cad. No:55, Muratpaşa, Antalya", coords: [36.8475, 30.7615] },
+                    { name: "A101 (Güzeloba)", distance: 10, walkText: "步行約 10-15 分鐘", type: "A101", brand: "a101", goods: "飲用水、零食、日用品", desc: "Güzeloba 區 Havaalanı 大道上，離飯店最近的超市。", mapQuery: "A101, Güzeloba Mah. Havaalanı Cad., Muratpaşa, Antalya", coords: [36.8540, 30.8050] },
+                    { name: "ŞOK (Fener Mah.)", distance: 18, walkText: "步行約 15-20 分", type: "ŞOK", brand: "sok", goods: "飲用水、餅乾、果汁", desc: "Fener 區 Lara 大道上的 ŞOK，規模不小。", mapQuery: "ŞOK Market, Fener Mah. Lara Cd. No:239/A, Muratpaşa, Antalya", coords: [36.8475, 30.7606] },
+                    { name: "Watsons (TerraCity 內)", distance: 20, walkText: "步行約 15-20 分 / 車程 5 分", type: "Watsons", brand: "watsons", goods: "國際品牌保養、彩妝、玫瑰水", desc: "在 TerraCity 購物中心裡面。", mapQuery: "Watsons, TerraCity AVM, Fener Mah. Tekelioğlu Cad. No:55, Antalya", coords: [36.8475, 30.7615] },
+                    { name: "Su Eczanesi", distance: 12, walkText: "步行約 10-15 分鐘", type: "Eczane", brand: "eczane", goods: "藥品、防曬、急需用品", desc: "Lara 觀光路上的藥局，有需要可以去。", mapQuery: "Su Eczanesi, Lara Kundu Turizm Yolu, Antalya", coords: [36.8510, 30.7950] }
+                ],
+                chartData: { distance: [20, 10, 18, 20, 12], types: [40, 10, 30, 20] }
+            },
+            // Day 7: 3/17 Pamukkale - PAM THERMAL
+            {
+                date: "3/17",
+                day: "Day 7",
+                location: "Antalya -> Pamukkale",
+                hotel: "PAM THERMAL HOTEL & SPA",
+                hotelAddress: "Karahayıt, 120. Sağlık Sk No:5/1, 20190 Pamukkale/Denizli",
                 hotelCoords: [37.7920, 29.1190],
-                summary: "拉車前往棉堡 (Pamukkale)。這裡盛產棉花，是土耳其紡織業中心。飯店通常有溫泉。",
+                summary: "前往棉堡 (Pamukkale)！這裡盛產棉花，是土耳其紡織業中心。飯店有溫泉可以泡。",
                 shoppingTip: "這是買毛巾、浴袍、棉T最划算的一站。Karahayit 村莊就在飯店附近。",
                 spots: [
-                    { name: "Karahayit Village (紅色溫泉村)", distance: 10, walkText: "步行 10-15 分鐘", type: "在地市集", goods: "棉織品、浴袍、石榴醋", price: "$", desc: "飯店走出去不遠就是市集，這裡的紡織品俗又大碗，記得殺價。", mapQuery: "Karahayıt, Pamukkale, Denizli", coords: [37.7940, 29.1170] },
-                    { name: "飯店內商店", distance: 1, walkText: "飯店大廳", type: "便利店", goods: "泳衣、泳帽 (泡溫泉用)", price: "$$", desc: "如果你忘了帶泳衣泡溫泉，只能在這裡買貴的了。", mapQuery: "", coords: [37.7920, 29.1190] },
-                    { name: "Migros Jet (Atatürk Cad.)", distance: 4, walkText: "步行約 3-6 分鐘", type: "Migros", brand: "migros", goods: "水、果汁、零食、生鮮", price: "$", desc: "村中主街 Atatürk 大道上，離飯店很近，品項比較齊全。", mapQuery: "Migros Jet, Karahayıt Mah. Atatürk Cad. No:20, Pamukkale, Denizli", coords: [37.7935, 29.1180] },
-                    { name: "ŞOK (152. Sok.)", distance: 6, walkText: "步行約 5-8 分鐘", type: "ŞOK", brand: "sok", goods: "飲用水、餅乾、果汁", price: "$", desc: "Karahayıt 村內的 ŞOK，在主街旁的小巷裡。", mapQuery: "ŞOK Market, Karahayıt Mahallesi, 152. Sokak No:3/A, Pamukkale, Denizli", coords: [37.7930, 29.1165] },
-                    { name: "A101 (Kızılhamam Sok.)", distance: 8, walkText: "步行約 5-10 分鐘", type: "A101", brand: "a101", goods: "飲用水、果汁、零食", price: "$", desc: "Karahayıt 村內的 A101，Kızılhamam 街上。", mapQuery: "A101, Karahayıt Mahallesi, Kızılhamam Sokak No:118, Pamukkale, Denizli", coords: [37.7925, 29.1155] },
-                    { name: "Eczane (Atatürk Cad.)", distance: 4, walkText: "步行約 3-6 分鐘", type: "Eczane", brand: "eczane", goods: "藥品、防曬、基礎保養", price: "$", desc: "主街 Atatürk 大道上，Migros Jet 旁邊。棉堡沒有 Gratis/Watsons。", mapQuery: "Eczane, Karahayıt Mah. Atatürk Cad., Pamukkale, Denizli", coords: [37.7936, 29.1178] }
+                    { name: "Karahayit Village (紅色溫泉村)", distance: 10, walkText: "步行 10-15 分鐘", type: "在地市集", goods: "棉織品、浴袍、石榴醋", desc: "飯店走出去不遠就是市集，這裡的紡織品俗又大碗，記得殺價。", mapQuery: "Karahayıt, Pamukkale, Denizli", coords: [37.7940, 29.1170] },
+                    { name: "飯店內商店", distance: 1, walkText: "飯店大廳", type: "便利店", goods: "泳衣、泳帽 (泡溫泉用)", desc: "如果你忘了帶泳衣泡溫泉，只能在這裡買貴的了。", mapQuery: "", coords: [37.7920, 29.1190] },
+                    { name: "Migros Jet (Atatürk Cad.)", distance: 4, walkText: "步行約 3-6 分鐘", type: "Migros", brand: "migros", goods: "水、果汁、零食、生鮮", desc: "村中主街 Atatürk 大道上，離飯店很近，品項比較齊全。", mapQuery: "Migros Jet, Karahayıt Mah. Atatürk Cad. No:20, Pamukkale, Denizli", coords: [37.7935, 29.1180] },
+                    { name: "ŞOK (152. Sok.)", distance: 6, walkText: "步行約 5-8 分鐘", type: "ŞOK", brand: "sok", goods: "飲用水、餅乾、果汁", desc: "Karahayıt 村內的 ŞOK，在主街旁的小巷裡。", mapQuery: "ŞOK Market, Karahayıt Mahallesi, 152. Sokak No:3/A, Pamukkale, Denizli", coords: [37.7930, 29.1165] },
+                    { name: "A101 (Kızılhamam Sok.)", distance: 8, walkText: "步行約 5-10 分鐘", type: "A101", brand: "a101", goods: "飲用水、果汁、零食", desc: "Karahayıt 村內的 A101，Kızılhamam 街上。", mapQuery: "A101, Karahayıt Mahallesi, Kızılhamam Sokak No:118, Pamukkale, Denizli", coords: [37.7925, 29.1155] },
+                    { name: "Eczane (Atatürk Cad.)", distance: 4, walkText: "步行約 3-6 分鐘", type: "Eczane", brand: "eczane", goods: "藥品、防曬、基礎保養", desc: "主街 Atatürk 大道上，Migros Jet 旁邊。棉堡沒有 Gratis/Watsons。", mapQuery: "Eczane, Karahayıt Mah. Atatürk Cad., Pamukkale, Denizli", coords: [37.7936, 29.1178] }
                 ],
                 chartData: { distance: [10, 1, 4, 6, 8, 4], types: [50, 15, 35, 0] }
             },
-            {
-                date: "3/17",
-                day: "Day 6",
-                location: "Pamukkale -> Izmir",
-                hotel: "Kaya Izmir Thermal & Convention",
-                hotelAddress: "Kaya Izmir Thermal & Convention, Narlıdere, İzmir, Turkey",
-                hotelCoords: [38.3920, 26.9480],
-                summary: "前往愛琴海大城伊茲密爾。Kaya 飯店位於 Narlidere 區，離市中心有點距離，但離 Agora 購物中心不算太遠。",
-                shoppingTip: "這晚適合去逛現代化的 Shopping Mall。Agora Mall 有國際品牌，逛起來很舒服。",
-                spots: [
-                    { name: "Agora Shopping Center", distance: 20, walkText: "步行約 20 分 / 車程 5 分", type: "大型商場", goods: "H&M, LC Waikiki (土耳其國民牌), 玩具, 美食街", price: "$", desc: "非常好逛的商場，如果不從飯店走過去，搭計程車很便宜也很近。", mapQuery: "Agora AVM, Balçova, İzmir", coords: [38.3880, 27.0300] },
-                    { name: "IstinyePark Izmir", distance: 40, walkText: "車程約 10-15 分", type: "頂級商場", goods: "精品、高端時尚", price: "$$", desc: "伊茲密爾最高級的商場，建築很美，適合想看精品的人。", mapQuery: "İstinyePark İzmir, Balçova, İzmir", coords: [38.3910, 27.0350] },
-                    { name: "ŞOK (Mithatpaşa Cad.)", distance: 4, walkText: "步行約 3-6 分鐘", type: "ŞOK", brand: "sok", goods: "飲用水、零食、優格", price: "$", desc: "同在 Ilıca 區 Mithatpaşa 大道上，飯店附近最近的超市。", mapQuery: "ŞOK Market, Ilıca Mah. Mithatpaşa Cad. No:6/A, Narlıdere, İzmir", coords: [38.3925, 26.9500] },
-                    { name: "Migros (Mithatpaşa Cad.)", distance: 6, walkText: "步行約 5-8 分鐘", type: "Migros", brand: "migros", goods: "生鮮、水果、飲料、日用品", price: "$", desc: "Ilıca 區 Mithatpaşa 大道上，品項比 ŞOK 多。", mapQuery: "Migros, Ilıca Mah. Mithatpaşa Cad. No:119/A, Narlıdere, İzmir", coords: [38.3930, 26.9520] },
-                    { name: "A101 (Mithatpaşa Cad.)", distance: 6, walkText: "步行約 5-8 分鐘", type: "A101", brand: "a101", goods: "飲用水、零食、日用品", price: "$", desc: "同在 Ilıca 區 Mithatpaşa 大道上。", mapQuery: "A101, Ilıca Mah. Mithatpaşa Cad. No:39/A, Narlıdere, İzmir", coords: [38.3928, 26.9510] },
-                    { name: "Gratis (Mithatpaşa Cad.)", distance: 18, walkText: "步行約 15-20 分（下坡）", type: "Gratis", brand: "gratis", goods: "玫瑰水、面膜、護手霜、土耳其平價美妝", price: "$", desc: "Narlıdere 主街上，離飯店最近的藥妝。回程上坡久一點，或搭 dolmuş 回。", mapQuery: "Gratis, Mithatpaşa Caddesi No:238/A, Narlıdere, İzmir", coords: [38.3960, 26.9600] },
-                    { name: "Nar Eczanesi", distance: 4, walkText: "步行約 3-5 分鐘", type: "Eczane", brand: "eczane", goods: "藥品、防曬、急需保養品", price: "$", desc: "Ilıca 區 Mithatpaşa 大道上，飯店附近最近的藥局。", mapQuery: "Nar Eczanesi, Ilıca Mah. Mithatpaşa Cad. No:32/A, Narlıdere, İzmir", coords: [38.3922, 26.9495] }
-                ],
-                chartData: { distance: [20, 10, 4, 6, 6, 18, 4], types: [50, 0, 40, 10] }
-            },
+            // Day 8: 3/18 Izmir - KAYA IZMIR THERMAL
             {
                 date: "3/18",
-                day: "Day 7",
-                location: "Izmir -> Istanbul",
-                hotel: "Grand Halic Hotel",
-                hotelAddress: "Grand Halic Hotel, Kemankeş Karamustafa Paşa, Beyoğlu, İstanbul, Turkey",
-                hotelCoords: [41.0275, 28.9720],
-                summary: "回到伊斯坦堡。Grand Halic 飯店位置絕佳！位於金角灣旁，步行可達佩拉區 (Pera) 和獨立大道。",
-                shoppingTip: "伊斯坦堡精華！晚上直接走去獨立大道 (Istiklal) 感受夜生活和購物。",
+                day: "Day 8",
+                location: "Pamukkale -> Izmir",
+                hotel: "KAYA IZMIR THERMAL HOTEL",
+                hotelAddress: "Ilıca, Zeytin Sk. No:112, 35320 Narlıdere/İzmir",
+                hotelCoords: [38.3920, 26.9480],
+                summary: "前往愛琴海大城伊茲密爾。Kaya 飯店位於 Narlıdere 區，離市中心有點距離，但離 Agora 購物中心不算太遠。",
+                shoppingTip: "這晚適合去逛現代化的 Shopping Mall。Agora Mall 有國際品牌，逛起來很舒服。",
                 spots: [
-                    { name: "Istiklal Street (獨立大道)", distance: 10, walkText: "步行 8-12 分鐘", type: "步行街", goods: "美妝 (Flormar, Golden Rose), 衣服 (Mango, Zara), 甜點", price: "$", desc: "土耳其的香榭大道。建議去 Hafiz Mustafa 1864 買精裝軟糖當伴手禮。", mapQuery: "İstiklal Caddesi, Beyoğlu, İstanbul", coords: [41.0320, 28.9770] },
-                    { name: "Şişhane 地鐵站周邊", distance: 5, walkText: "步行 5 分鐘", type: "設計小店", goods: "設計燈飾、家飾", price: "$", desc: "飯店附近很多賣燈飾和樂器的店，很有氣氛。", mapQuery: "Şişhane Metro, Beyoğlu, İstanbul", coords: [41.0285, 28.9735] },
-                    { name: "ŞOK (Tarlabaşı Blv.)", distance: 6, walkText: "步行約 5-8 分鐘", type: "ŞOK", brand: "sok", goods: "飲用水、果汁、餅乾、紅茶包、優格", price: "$", desc: "Tarlabaşı 大道上，跟飯店的 Refik Saydam 大道平行，最近的超市。", mapQuery: "ŞOK Market, Hüseyinağa Mahallesi, Tarlabaşı Bulvarı No:61-63, Beyoğlu, İstanbul", coords: [41.0310, 28.9760] },
-                    { name: "Migros Jet (Bankalar Cad.)", distance: 9, walkText: "步行約 8-10 分鐘", type: "Migros", brand: "migros", goods: "生鮮、水果、飲料", price: "$", desc: "往 Karaköy/Galata 方向走，Bankalar 大道上。", mapQuery: "Migros Jet, Bereketzade Mah. Bankalar Cad. No:6/A, Beyoğlu, İstanbul", coords: [41.0240, 28.9740] },
-                    { name: "Gratis (İstiklal Narmanlıhan)", distance: 11, walkText: "步行約 10-12 分鐘", type: "Gratis", brand: "gratis", goods: "玫瑰水 (Gulsha)、面膜、護手霜、Flormar 彩妝", price: "$", desc: "獨立大道 Narmanlı Han 裡面的 Gratis，從 Şişhane 走上去就到。", mapQuery: "Gratis, Asmalımescit Mah. İstiklal Cad. No:180/A, Narmanlı Han, Beyoğlu, İstanbul", coords: [41.0330, 28.9780] },
-                    { name: "Watsons (İstiklal Cad.)", distance: 13, walkText: "步行約 12-15 分鐘", type: "Watsons", brand: "watsons", goods: "國際品牌保養、彩妝、玫瑰水", price: "$", desc: "獨立大道上的 Watsons，品項比 Gratis 國際化。全程最方便買 Watsons 的機會！", mapQuery: "Watsons, Asmalımescit Mahallesi, İstiklal Caddesi No:134, Beyoğlu, İstanbul", coords: [41.0335, 28.9775] },
-                    { name: "Tünel Eczanesi", distance: 6, walkText: "步行約 5-8 分鐘", type: "Eczane", brand: "eczane", goods: "藥品、處方藥、急需用品", price: "$", desc: "Meşrutiyet 大道上，跟飯店同區，走路很近。", mapQuery: "Tünel Eczanesi, Evliya Çelebi Mah. Meşrutiyet Caddesi No:78, Beyoğlu, İstanbul", coords: [41.0290, 28.9745] },
-                    { name: "Nişantaşı 精品街區", distance: 15, walkText: "地鐵 M2 線約 10 分 / 計程車 10-15 分", type: "精品街區", goods: "Beymen, Vakko, Louis Vuitton, Gucci, 土耳其設計師品牌", price: "$$", desc: "伊斯坦堡最高級的購物街，Abdi İpekçi Caddesi 和 Teşvikiye Caddesi 上精品林立。從 Şişhane 搭 M2 地鐵到 Osmanbey 站出來就是。", mapQuery: "Nişantaşı, Abdi İpekçi Caddesi, Şişli, İstanbul", coords: [41.0480, 28.9950] }
+                    { name: "Agora Shopping Center", distance: 20, walkText: "步行約 20 分 / 車程 5 分", type: "大型商場", goods: "H&M, LC Waikiki (土耳其國民牌), 玩具, 美食街", desc: "非常好逛的商場，搭計程車很便宜也很近。", mapQuery: "Agora AVM, Balçova, İzmir", coords: [38.3880, 27.0300] },
+                    { name: "ŞOK (Mithatpaşa Cad.)", distance: 4, walkText: "步行約 3-6 分鐘", type: "ŞOK", brand: "sok", goods: "飲用水、零食、優格", desc: "Ilıca 區 Mithatpaşa 大道上，飯店附近最近的超市。", mapQuery: "ŞOK Market, Ilıca Mah. Mithatpaşa Cad. No:6/A, Narlıdere, İzmir", coords: [38.3925, 26.9500] },
+                    { name: "Migros (Mithatpaşa Cad.)", distance: 6, walkText: "步行約 5-8 分鐘", type: "Migros", brand: "migros", goods: "生鮮、水果、飲料、日用品", desc: "Ilıca 區 Mithatpaşa 大道上，品項比 ŞOK 多。", mapQuery: "Migros, Ilıca Mah. Mithatpaşa Cad. No:119/A, Narlıdere, İzmir", coords: [38.3930, 26.9520] },
+                    { name: "A101 (Mithatpaşa Cad.)", distance: 6, walkText: "步行約 5-8 分鐘", type: "A101", brand: "a101", goods: "飲用水、零食、日用品", desc: "同在 Ilıca 區 Mithatpaşa 大道上。", mapQuery: "A101, Ilıca Mah. Mithatpaşa Cad. No:39/A, Narlıdere, İzmir", coords: [38.3928, 26.9510] },
+                    { name: "Gratis (Mithatpaşa Cad.)", distance: 18, walkText: "步行約 15-20 分（下坡）", type: "Gratis", brand: "gratis", goods: "玫瑰水、面膜、護手霜、土耳其平價美妝", desc: "Narlıdere 主街上，離飯店最近的藥妝。回程上坡久一點，或搭 dolmuş 回。", mapQuery: "Gratis, Mithatpaşa Caddesi No:238/A, Narlıdere, İzmir", coords: [38.3960, 26.9600] },
+                    { name: "Nar Eczanesi", distance: 4, walkText: "步行約 3-5 分鐘", type: "Eczane", brand: "eczane", goods: "藥品、防曬、急需保養品", desc: "Ilıca 區 Mithatpaşa 大道上，飯店附近最近的藥局。", mapQuery: "Nar Eczanesi, Ilıca Mah. Mithatpaşa Cad. No:32/A, Narlıdere, İzmir", coords: [38.3922, 26.9495] }
                 ],
-                chartData: { distance: [10, 5, 6, 9, 11, 13, 6, 15], types: [30, 20, 25, 25] }
+                chartData: { distance: [20, 4, 6, 6, 18, 4], types: [50, 0, 40, 10] }
             },
+            // Day 9: 3/19 Istanbul (Bahçelievler) - GRAND HARILTON
             {
                 date: "3/19",
-                day: "Day 8",
-                location: "Istanbul (Free Day)",
-                hotel: "Grand Halic Hotel",
-                hotelAddress: "Grand Halic Hotel, Kemankeş Karamustafa Paşa, Beyoğlu, İstanbul, Turkey",
-                hotelCoords: [41.0275, 28.9720],
-                summary: "伊斯坦堡全日。這是最後補貨的機會。建議前往香料市集 (Spice Bazaar) 或大市集 (Grand Bazaar)。",
-                shoppingTip: "香料市集買果乾、花茶、香料。大市集買皮衣、金飾、彩盤。記得：貨比三家不吃虧。",
+                day: "Day 9",
+                location: "Izmir -> Istanbul",
+                hotel: "GRAND HARILTON HOTEL",
+                hotelAddress: "Yenibosna Merkez, Ali Duran Sk. No:6, 34100 Bahçelievler/İstanbul",
+                hotelCoords: [41.0020, 28.8320],
+                summary: "前往伊斯坦堡！飯店位於 Bahçelievler (Yenibosna)，靠近舊機場區，是郊區住宅區。附近有 MetroPort AVM 和 StarCity Outlet 可以逛。",
+                shoppingTip: "飯店在郊區，建議搭地鐵或計程車前往市中心觀光購物。MetroPort AVM 步行可達。",
                 spots: [
-                    { name: "Egyptian Bazaar (香料市集)", distance: 20, walkText: "步行約 20 分 / 輕軌 10 分", type: "傳統市集", goods: "土耳其軟糖(秤重), 蘋果茶, 番紅花, 烏魚子", price: "$", desc: "比大市集更親民，更好買土產。建議在這裡買齊所有吃的伴手禮。", mapQuery: "Mısır Çarşısı, Eminönü, İstanbul", coords: [41.0165, 28.9705] },
-                    { name: "Grand Bazaar (大市集)", distance: 25, walkText: "步行 25 分 / 輕軌 T1 線", type: "超大型市集", goods: "金飾, 地毯, 皮件, 仿冒品", price: "$-$$", desc: "迷宮一樣的地方，參觀性質大於購物，除非你是殺價高手。", mapQuery: "Kapalıçarşı, Beyazıt, İstanbul", coords: [41.0108, 28.9680] },
-                    { name: "Galata Tower (加拉達塔) 周邊", distance: 10, walkText: "步行 10 分鐘", type: "文創街區", goods: "文創小物, 設計T恤", price: "$", desc: "飯店往塔的方向走，有很多文青小店。", mapQuery: "Galata Kulesi, Beyoğlu, İstanbul", coords: [41.0256, 28.9741] },
-                    { name: "A101 (Hacıahmet)", distance: 11, walkText: "步行約 10-12 分鐘", type: "A101", brand: "a101", goods: "大量採購果乾、茶包、巧克力當伴手禮", price: "$", desc: "最後一天大採購補貨的好選擇。Kaptanpaşa 區也有一間。", mapQuery: "A101, Yeni Bostan Sokak No:8 D:1, Hacıahmet, Beyoğlu, İstanbul", coords: [41.0340, 28.9690] },
-                    { name: "ŞOK (Tarlabaşı Blv.)", distance: 6, walkText: "步行約 5-8 分鐘", type: "ŞOK", brand: "sok", goods: "最後補貨飲用水、零食", price: "$", desc: "同 Day 7，飯店附近最近的超市。", mapQuery: "ŞOK Market, Hüseyinağa Mahallesi, Tarlabaşı Bulvarı No:61-63, Beyoğlu, İstanbul", coords: [41.0310, 28.9760] },
-                    { name: "Nişantaşı 精品街區", distance: 15, walkText: "地鐵 M2 線約 10 分 / 計程車 10-15 分", type: "精品街區", goods: "Beymen, Vakko, Louis Vuitton, Gucci, 土耳其設計師品牌", price: "$$", desc: "伊斯坦堡最高級的購物街，Abdi İpekçi Caddesi 和 Teşvikiye Caddesi 上精品林立。從 Şişhane 搭 M2 地鐵到 Osmanbey 站出來就是。", mapQuery: "Nişantaşı, Abdi İpekçi Caddesi, Şişli, İstanbul", coords: [41.0480, 28.9950] }
+                    { name: "MetroPort AVM", distance: 18, walkText: "步行約 15-20 分 / 車程 5 分", type: "大型商場", goods: "服飾、美食街、電影院、Migros、Watsons", desc: "Bahçelievler 地鐵站上方的商場，有 Migros 和 Watsons，是附近最方便的購物中心。", mapQuery: "MetroPort AVM, Bahçelievler, İstanbul", coords: [40.9980, 28.8580] },
+                    { name: "StarCity Outlet", distance: 20, walkText: "步行約 20 分 / 車程 5 分", type: "Outlet 商場", goods: "運動品牌、時尚折扣", desc: "Yenibosna 地鐵站附近的 Outlet 商場，適合撿便宜。", mapQuery: "StarCity Outlet, Bahçelievler, İstanbul", coords: [41.0000, 28.8400] },
+                    { name: "ŞOK (Siyavuşpaşa Mah.)", distance: 10, walkText: "步行約 8-12 分鐘", type: "ŞOK", brand: "sok", goods: "飲用水、果汁、餅乾", desc: "Siyavuşpaşa 區 Oğuzhan 街上，離飯店最近的超市之一。", mapQuery: "ŞOK Market, Siyavuşpaşa Mah. Oğuzhan Sok. No:34/C, Bahçelievler, İstanbul", coords: [41.0010, 28.8350] },
+                    { name: "A101 (Yenibosna)", distance: 12, walkText: "步行約 10-15 分鐘", type: "A101", brand: "a101", goods: "飲用水、零食、日用品", desc: "Yenibosna Çobançeşme 區 Fatih 大道上。", mapQuery: "A101, Çobançeşme Mah. Fatih Cad. No:57, Bahçelievler, İstanbul", coords: [41.0030, 28.8370] },
+                    { name: "Migros (Koçtaş AVM)", distance: 15, walkText: "步行約 12-15 分鐘", type: "Migros", brand: "migros", goods: "生鮮、水果、飲料、日用品", desc: "Koçtaş AVM 裡面的 Migros，品項齊全。", mapQuery: "Migros, Koçtaş AVM, Yıldırım Beyazıd Cad. No:1, Bahçelievler, İstanbul", coords: [41.0000, 28.8450] },
+                    { name: "Watsons (MetroPort 內)", distance: 18, walkText: "步行約 15-20 分 / 車程 5 分", type: "Watsons", brand: "watsons", goods: "國際品牌保養、彩妝", desc: "在 MetroPort AVM 裡面。", mapQuery: "Watsons, MetroPort AVM, Bahçelievler, İstanbul", coords: [40.9980, 28.8580] },
+                    { name: "Berkay Eczanesi", distance: 10, walkText: "步行約 8-12 分鐘", type: "Eczane", brand: "eczane", goods: "藥品、防曬、急需用品", desc: "Bahçelievler 區內，走路可達。", mapQuery: "Berkay Eczanesi, Bahçelievler, İstanbul", coords: [41.0015, 28.8340] }
                 ],
-                chartData: { distance: [20, 25, 10, 11, 6, 15], types: [15, 50, 20, 15] }
+                chartData: { distance: [18, 20, 10, 12, 15, 18, 10], types: [40, 10, 30, 20] }
             },
+            // Day 10: 3/20 Istanbul (Bahçelievler) - GRAND HARILTON (第二晚)
             {
                 date: "3/20",
-                day: "Day 9",
-                location: "Istanbul (最後一天)",
-                hotel: "Grand Halic Hotel",
-                hotelAddress: "Grand Halic Hotel, Kemankeş Karamustafa Paşa, Beyoğlu, İstanbul, Turkey",
-                hotelCoords: [41.0275, 28.9720],
-                summary: "伊斯坦堡全日。這是最後補貨的機會。建議前往香料市集 (Spice Bazaar) 或大市集 (Grand Bazaar)。",
-                shoppingTip: "香料市集買果乾、花茶、香料。大市集買皮衣、金飾、彩盤。記得：貨比三家不吃虧。",
+                day: "Day 10",
+                location: "Istanbul (市區觀光)",
+                hotel: "GRAND HARILTON HOTEL",
+                hotelAddress: "Yenibosna Merkez, Ali Duran Sk. No:6, 34100 Bahçelievler/İstanbul",
+                hotelCoords: [41.0020, 28.8320],
+                summary: "伊斯坦堡全日觀光！建議搭地鐵前往市中心逛香料市集、大市集。最後一天大採購的機會！",
+                shoppingTip: "從 Yenibosna 搭 M1A 地鐵到 Aksaray 轉 T1 輕軌到 Eminönü，約 30-40 分可達市中心。",
                 spots: [
-                    { name: "Egyptian Bazaar (香料市集)", distance: 20, walkText: "步行約 20 分 / 輕軌 10 分", type: "傳統市集", goods: "土耳其軟糖(秤重), 蘋果茶, 番紅花, 烏魚子", price: "$", desc: "比大市集更親民，更好買土產。建議在這裡買齊所有吃的伴手禮。", mapQuery: "Mısır Çarşısı, Eminönü, İstanbul", coords: [41.0165, 28.9705] },
-                    { name: "Grand Bazaar (大市集)", distance: 25, walkText: "步行 25 分 / 輕軌 T1 線", type: "超大型市集", goods: "金飾, 地毯, 皮件, 仿冒品", price: "$-$$", desc: "迷宮一樣的地方，參觀性質大於購物，除非你是殺價高手。", mapQuery: "Kapalıçarşı, Beyazıt, İstanbul", coords: [41.0108, 28.9680] },
-                    { name: "Galata Tower (加拉達塔) 周邊", distance: 10, walkText: "步行 10 分鐘", type: "文創街區", goods: "文創小物, 設計T恤", price: "$", desc: "飯店往塔的方向走，有很多文青小店。", mapQuery: "Galata Kulesi, Beyoğlu, İstanbul", coords: [41.0256, 28.9741] },
-                    { name: "A101 (Hacıahmet)", distance: 11, walkText: "步行約 10-12 分鐘", type: "A101", brand: "a101", goods: "大量採購果乾、茶包、巧克力當伴手禮", price: "$", desc: "最後一天大採購補貨的好選擇。Kaptanpaşa 區也有一間。", mapQuery: "A101, Yeni Bostan Sokak No:8 D:1, Hacıahmet, Beyoğlu, İstanbul", coords: [41.0340, 28.9690] },
-                    { name: "ŞOK (Tarlabaşı Blv.)", distance: 6, walkText: "步行約 5-8 分鐘", type: "ŞOK", brand: "sok", goods: "最後補貨飲用水、零食", price: "$", desc: "同 Day 7，飯店附近最近的超市。", mapQuery: "ŞOK Market, Hüseyinağa Mahallesi, Tarlabaşı Bulvarı No:61-63, Beyoğlu, İstanbul", coords: [41.0310, 28.9760] },
-                    { name: "Nişantaşı 精品街區", distance: 15, walkText: "地鐵 M2 線約 10 分 / 計程車 10-15 分", type: "精品街區", goods: "Beymen, Vakko, Louis Vuitton, Gucci, 土耳其設計師品牌", price: "$$", desc: "伊斯坦堡最高級的購物街，Abdi İpekçi Caddesi 和 Teşvikiye Caddesi 上精品林立。從 Şişhane 搭 M2 地鐵到 Osmanbey 站出來就是。", mapQuery: "Nişantaşı, Abdi İpekçi Caddesi, Şişli, İstanbul", coords: [41.0480, 28.9950] }
+                    { name: "Egyptian Bazaar (香料市集)", distance: 40, walkText: "地鐵+輕軌約 30-40 分", type: "傳統市集", goods: "土耳其軟糖(秤重), 蘋果茶, 番紅花, 烏魚子", desc: "比大市集更親民，建議在這裡買齊所有吃的伴手禮。從 Yenibosna 搭 M1A → Aksaray 轉 T1 → Eminönü。", mapQuery: "Mısır Çarşısı, Eminönü, İstanbul", coords: [41.0165, 28.9705] },
+                    { name: "Grand Bazaar (大市集)", distance: 45, walkText: "地鐵+輕軌約 35-45 分", type: "超大型市集", goods: "金飾, 地毯, 皮件", desc: "迷宮一樣的地方，參觀性質大於購物，除非你是殺價高手。T1 輕軌 Beyazıt 站。", mapQuery: "Kapalıçarşı, Beyazıt, İstanbul", coords: [41.0108, 28.9680] },
+                    { name: "Nişantaşı 精品街區", distance: 50, walkText: "地鐵約 40-50 分 / 計程車 30-40 分", type: "精品街區", goods: "Beymen, Vakko, Louis Vuitton, Gucci, 土耳其設計師品牌", desc: "伊斯坦堡最高級的購物街。從 Yenibosna 搭 M1A 到 Yenikapı 轉 M2 到 Osmanbey 站。距離較遠但值得。", mapQuery: "Nişantaşı, Abdi İpekçi Caddesi, Şişli, İstanbul", coords: [41.0480, 28.9950] },
+                    { name: "A101 (Yenibosna)", distance: 12, walkText: "步行約 10-15 分鐘", type: "A101", brand: "a101", goods: "大量採購果乾、茶包、巧克力當伴手禮", desc: "最後補貨的好選擇，離飯店近。", mapQuery: "A101, Çobançeşme Mah. Fatih Cad. No:57, Bahçelievler, İstanbul", coords: [41.0030, 28.8370] },
+                    { name: "ŞOK (Siyavuşpaşa Mah.)", distance: 10, walkText: "步行約 8-12 分鐘", type: "ŞOK", brand: "sok", goods: "最後補貨飲用水、零食", desc: "同 Day 9，飯店附近最近的超市。", mapQuery: "ŞOK Market, Siyavuşpaşa Mah. Oğuzhan Sok. No:34/C, Bahçelievler, İstanbul", coords: [41.0010, 28.8350] }
                 ],
-                chartData: { distance: [20, 25, 10, 11, 6, 15], types: [15, 50, 20, 15] }
+                chartData: { distance: [40, 45, 50, 12, 10], types: [15, 50, 20, 15] }
+            },
+            // Day 11: 3/21 飛機上
+            {
+                date: "3/21",
+                day: "Day 11",
+                location: "Istanbul -> Taipei",
+                hotel: "飛機上",
+                hotelAddress: "",
+                hotelCoords: null,
+                summary: "回程日！記得在伊斯坦堡機場免稅店做最後一輪掃貨。機場免稅店有很多土耳其品牌。",
+                shoppingTip: "機場免稅店推薦：Turkish Delight 精裝禮盒、土耳其紅茶、Flormar 彩妝、玫瑰水。",
+                spots: [],
+                chartData: { distance: [], types: [0,0,0,0] }
+            },
+            // Day 12: 3/22 溫暖的家
+            {
+                date: "3/22",
+                day: "Day 12",
+                location: "回到台灣",
+                hotel: "溫暖的家 🏠",
+                hotelAddress: "",
+                hotelCoords: null,
+                summary: "回到溫暖的家！整理戰利品，回味美好的土耳其之旅。",
+                shoppingTip: "歡迎回家！希望這趟旅程買得開心。",
+                spots: [],
+                chartData: { distance: [], types: [0,0,0,0] }
             }
         ];
 
