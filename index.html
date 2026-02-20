@@ -364,16 +364,20 @@
             {
                 date: "3/20",
                 day: "Day 9",
-                location: "Istanbul -> Taipei",
-                hotel: "溫暖的家",
-                hotelAddress: "Istanbul Airport (IST), Arnavutköy, İstanbul, Turkey",
-                hotelCoords: [41.2610, 28.7420],
-                summary: "打包回府。伊斯坦堡新機場 (IST) 非常大，免稅店非常多，是最後花掉里拉的好地方。",
-                shoppingTip: "機場物價較高 (歐元計價為主)，建議把里拉零錢在市區花完。機場適合買酒或國際精品。",
+                location: "Istanbul (最後一天)",
+                hotel: "Grand Halic Hotel",
+                hotelAddress: "Grand Halic Hotel, Kemankeş Karamustafa Paşa, Beyoğlu, İstanbul, Turkey",
+                hotelCoords: [41.0275, 28.9720],
+                summary: "伊斯坦堡全日。這是最後補貨的機會。建議前往香料市集 (Spice Bazaar) 或大市集 (Grand Bazaar)。",
+                shoppingTip: "香料市集買果乾、花茶、香料。大市集買皮衣、金飾、彩盤。記得：貨比三家不吃虧。",
                 spots: [
-                    { name: "IST Airport Duty Free", distance: 0, walkText: "機場內", type: "免稅店", goods: "菸酒, Godiva, 國際精品", price: "$$", desc: "世界最大的機場之一，預留 2-3 小時逛街是合理的。", mapQuery: "", coords: [41.2610, 28.7420] }
+                    { name: "Egyptian Bazaar (香料市集)", distance: 20, walkText: "步行約 20 分 / 輕軌 10 分", type: "傳統市集", goods: "土耳其軟糖(秤重), 蘋果茶, 番紅花, 烏魚子", price: "$", desc: "比大市集更親民，更好買土產。建議在這裡買齊所有吃的伴手禮。", mapQuery: "Mısır Çarşısı, Eminönü, İstanbul", coords: [41.0165, 28.9705] },
+                    { name: "Grand Bazaar (大市集)", distance: 25, walkText: "步行 25 分 / 輕軌 T1 線", type: "超大型市集", goods: "金飾, 地毯, 皮件, 仿冒品", price: "$-$$", desc: "迷宮一樣的地方，參觀性質大於購物，除非你是殺價高手。", mapQuery: "Kapalıçarşı, Beyazıt, İstanbul", coords: [41.0108, 28.9680] },
+                    { name: "Galata Tower (加拉達塔) 周邊", distance: 10, walkText: "步行 10 分鐘", type: "文創街區", goods: "文創小物, 設計T恤", price: "$", desc: "飯店往塔的方向走，有很多文青小店。", mapQuery: "Galata Kulesi, Beyoğlu, İstanbul", coords: [41.0256, 28.9741] },
+                    { name: "A101 (Hacıahmet)", distance: 11, walkText: "步行約 10-12 分鐘", type: "A101", brand: "a101", goods: "大量採購果乾、茶包、巧克力當伴手禮", price: "$", desc: "最後一天大採購補貨的好選擇。Kaptanpaşa 區也有一間。", mapQuery: "A101, Yeni Bostan Sokak No:8 D:1, Hacıahmet, Beyoğlu, İstanbul", coords: [41.0340, 28.9690] },
+                    { name: "ŞOK (Tarlabaşı Blv.)", distance: 6, walkText: "步行約 5-8 分鐘", type: "ŞOK", brand: "sok", goods: "最後補貨飲用水、零食", price: "$", desc: "同 Day 7，飯店附近最近的超市。", mapQuery: "ŞOK Market, Hüseyinağa Mahallesi, Tarlabaşı Bulvarı No:61-63, Beyoğlu, İstanbul", coords: [41.0310, 28.9760] }
                 ],
-                chartData: { distance: [0], types: [30, 30, 10, 30] }
+                chartData: { distance: [20, 25, 10, 11, 6], types: [15, 55, 25, 5] }
             }
         ];
 
