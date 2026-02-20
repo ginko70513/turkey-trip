@@ -121,6 +121,7 @@
                             <div>
                                 <p class="text-xs text-gray-400 uppercase">Tonight's Hotel</p>
                                 <p id="hotel-name" class="font-bold text-lg leading-tight">飛機上 / 機場</p>
+                                <p id="hotel-address" class="text-xs text-gray-400 mt-1 leading-snug"></p>
                             </div>
                         </div>
                     </div>
@@ -471,6 +472,7 @@
             document.getElementById('day-badge').innerText = `${data.day} • ${data.date}`;
             document.getElementById('location-title').innerText = data.location;
             document.getElementById('hotel-name').innerText = data.hotel;
+            document.getElementById('hotel-address').innerText = data.hotelAddress || '';
             document.getElementById('hotel-note').innerText = data.shoppingTip;
             document.getElementById('daily-summary').innerText = data.summary;
 
